@@ -30,18 +30,24 @@ class List_2:
 
     def insert_end(self, data):
         new_node = Node(data)
+        if self.start_node is None:
+            self.start_node = new_node
+            return
+        
         n = self.start_node
         while n.next:
             n = n.next
         n.next = new_node
+        new_node.prev = n
 
-    def del_start (self):
+    def del_start(self):
         if self.start_node is None:
             print("список пустой")
             return
         self.start_node = self.start_node.next
+        self.start_node.prev = None
 
-    def del_end (self):
+    def del_end(self):
         if self.start_node is None:
             print("список пустой")
             return
@@ -49,6 +55,7 @@ class List_2:
         while n.next.next:
             n = n.next
         n.next = None
+        #n.prev = None не необходимости так как и так удалена прямая ссылка
 
     def search(self, x):
         n = self.start_node
@@ -62,18 +69,20 @@ class List_2:
 
 
 
-l1 = List_2(4)
-l1.insert_start(3)
-l1.insert_start(2)
-l1.insert_start(1)
-l1.insert_end(5)
-l1.print_l()
+l2 = List_2()
+l2.insert_start(3)
+l2.insert_start(2)
+l2.insert_start(1)
+l2.insert_end(4)
+l2.insert_end(5)
 
-#l1.del_start()
-#l1.print_l()
+l2.print_l()
 
-#l1.del_end()
-#l1.print_l()
+l2.del_start()
+l2.print_l()
 
-print(l1.search(4))    
+l2.del_end()
+l2.print_l()
+
+print(l2.search(2))    
 
