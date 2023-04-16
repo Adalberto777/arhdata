@@ -80,7 +80,24 @@ class List_2:
             temp = n.prev
             n.next = n.prev
             n.prev = next
-            n = n.next          
+            n = n.next
+
+   
+    def bubbleSort(self):
+        if self.start_node is None:
+            print("список пустой")
+            return
+        end = None
+        while end != self.start_node:
+            current = self.start_node
+            while current.next != end:
+                if current.data > current.next.data:
+                    temp = current.data
+                    current.data = current.next.data
+                    current.next.data = temp                    
+                current = current.next
+            end = current
+        
 
 
 l2 = List_2()
@@ -96,4 +113,9 @@ l2.print_l()
 
 l2.revers()
 l2.print_l()
+
+l2.bubbleSort()
+l2.print_l()
+
+
 
